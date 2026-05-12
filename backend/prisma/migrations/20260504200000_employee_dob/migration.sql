@@ -1,1 +1,0 @@
-ALTER TABLE "Employee" ADD COLUMN "dateOfBirth" TIMESTAMP(3);
