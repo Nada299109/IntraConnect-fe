@@ -249,7 +249,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // No demo match — try the real backend.
       let response: Response
       try {
-        response = await fetch('http://localhost:3001/api/v1/auth/login', {
+        const apiBase = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001/api/v1'
+      response = await fetch(`${apiBase}/auth/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
@@ -393,7 +394,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (typeof window !== 'undefined') {
       window.localStorage.removeItem('accessToken')
     }
-    fetch('http://localhost:3001/api/v1/auth/logout', {
+    const apiBase = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001/api/v1'
+    fetch(`${apiBase}/auth/logout`, {
       method: 'POST',
       credentials: 'include',
     }).catch(() => {})
